@@ -63,13 +63,10 @@ public class Inventory
 
 
 
-    public void TryInsert(IEnumerable<ItemStack> stacks)
-    {
-        foreach (var s in stacks)
-        {
-            Debug.Log(s.Type);
-        }
-    }
+    //public void TryPutToChest()
+    //{
+        
+    //}
 
 
     // Забрать всё содержимое (для сундука).

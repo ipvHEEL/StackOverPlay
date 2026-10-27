@@ -45,9 +45,12 @@ public class BuildController : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && hovered != null) TryRemove(hovered);
         if (Input.GetKeyDown(KeyCode.F) && hovered != null && player.InReach(HoverCell))
             player.Inventory.AddAll(hovered.TakeContents());
-        if (Input.GetKeyDown(KeyCode.G) )//&& hovered != null && player.InReach(HoverCell))
+        if (Input.GetKeyDown(KeyCode.G) && hovered != null && player.InReach(HoverCell))
         {
-            player.Inventory.TryInsert();
+            int currentPLayerBalance = player.Inventory.Count(ItemType.Stone);
+            if (currentPLayerBalance != 0 && hovered.TryInsert(ItemType.Stone)) {
+                player.Inventory.Remove(ItemType.Stone);
+            }
         }
 
     }
