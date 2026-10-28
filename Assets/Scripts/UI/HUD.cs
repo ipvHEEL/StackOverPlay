@@ -49,7 +49,7 @@ public class HUD : MonoBehaviour
         DrawMiningBar();
 
         GUI.Label(new Rect(10, Screen.height - 110, 420, 100),
-            "WASD — ходить, колесо — зум\nПКМ (зажать) на руде — копать вручную\n1-4 — выбрать здание, R — поворот, Q — отмена\nЛКМ — построить, ПКМ — разобрать, F — забрать содержимое",
+            "WASD ходить, колесо зум\nПКМ (зажать) на руде копать вручную\n1-4 выбрать здание, R поворот, Q отмена\nЛКМ построить, ПКМ разобрать, F забрать содержимое",
             label);
     }
 
@@ -76,7 +76,7 @@ public class HUD : MonoBehaviour
             foreach (var c in def.Cost) cost.Append(c.Amount).Append(" ").Append(ItemDatabase.GetName(c.Type)).Append("\n");
 
             GUI.color = Builder.Selected == def ? new Color(1f, 0.85f, 0.3f) : Color.white;
-            if (GUI.Button(r, "[" + (i + 1) + "] " + def.Name + "\n" + cost.ToString().TrimEnd(), slot))
+            if (GUI.Button(r, "[" + (i + 1) + "] " + def.Name + "\n" /*+ cost.ToString().TrimEnd()*/, slot))
                 Builder.Select(Builder.Selected == def ? null : def);
         }
         GUI.color = Color.white;
