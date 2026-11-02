@@ -21,9 +21,9 @@ public static class GameBootstrap
         playerGo.transform.position = world.SpawnPoint;
         var body = new GameObject("Body").AddComponent<SpriteRenderer>();
         body.transform.SetParent(playerGo.transform, false);
-        body.transform.localScale = Vector3.one * 0.7f;
+        body.transform.localScale = Vector3.one * 2.0f;
         var playerColor = new Color(1f, 0.55f, 0.1f);
-        body.sprite = SpriteFactory.Square(playerColor, 0.03f, 2, SpriteFactory.Darker(playerColor, 0.4f));
+        body.sprite = Resources.LoadAll<Sprite>("Sprites/MinifolksVillagers/Outline/MiniVillagerMan")[0];
         body.sortingOrder = SortingOrders.Player;
 
         var player = playerGo.AddComponent<PlayerController>();
