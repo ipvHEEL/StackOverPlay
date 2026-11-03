@@ -48,9 +48,6 @@ public class HUD : MonoBehaviour
         DrawHoverInfo();
         DrawMiningBar();
 
-        GUI.Label(new Rect(10, Screen.height - 110, 420, 100),
-            "WASD ходить, колесо зум\nПКМ (зажать) на руде копать вручную\n1-4 выбрать здание, R поворот, Q отмена\nЛКМ построить, ПКМ разобрать, F забрать содержимое",
-            label);
     }
 
     void DrawInventory()
