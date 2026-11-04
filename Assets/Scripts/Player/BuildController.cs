@@ -61,6 +61,7 @@ public class BuildController : MonoBehaviour
     {
         Selected = def;
         if (ghost != null) Destroy(ghost);
+        ghost = null; // Destroy срабатывает только в конце кадра
         ghostRenderers.Clear();
         if (def == null) return;
 
