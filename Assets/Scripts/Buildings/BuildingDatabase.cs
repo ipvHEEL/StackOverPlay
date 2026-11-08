@@ -70,7 +70,7 @@ public static class BuildingDatabase
         {
             Type = BuildingType.Manipulator,
             Name = "Манипулятор",
-            Color = new Color(0.55f, 0.40f, 0.22f),
+            Color = new Color(0.55f, 0.55f, 0.55f),
             VisualScale = 0.8f,
             Rotatable = true,
             Hotkey = KeyCode.Alpha5,
