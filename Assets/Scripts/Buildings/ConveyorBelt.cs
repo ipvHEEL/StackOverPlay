@@ -11,6 +11,8 @@ public class ConveyorBelt : Building
     float progress; // 0 = задний край, 1 = передний край
     SpriteRenderer itemRenderer;
 
+    readonly Inventory storage = new Inventory();
+
     protected override void OnBuilt()
     {
         itemRenderer = new GameObject("Item").AddComponent<SpriteRenderer>();

@@ -54,8 +54,9 @@ public class BuildController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.T) && hovered != null && player.InReach(HoverCell))
         {
-            int currentPLayerBalance = player.Inventory.Count(ItemType.Stone);
-            if (currentPLayerBalance != 0 && hovered.TryInsertFuel(ItemType.Stone)) {
+            int currentPLayerBalance = player.Inventory.Count(ItemType.Coal);
+            if (currentPLayerBalance != 0 && hovered.TryInsertFuel(ItemType.Coal)) 
+            {
                 player.Inventory.Remove(ItemType.Stone);
             }
         }

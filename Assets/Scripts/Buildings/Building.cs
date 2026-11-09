@@ -22,6 +22,12 @@ public abstract class Building : MonoBehaviour
         OnBuilt();
     }
 
+    public virtual bool TryInsertFuel(ItemType item)
+    {
+        return false;
+    }
+
+
     public void SetFacing(Direction facing)
     {
         Facing = Def.Rotatable ? facing : Direction.Up;

@@ -10,7 +10,7 @@ public class Manipualtor : Building
     ItemType item = ItemType.None;
 
     public override bool TryInsert(ItemType item)
-    {   
+    {
         if (storage.Total >= Capacity) return false;
         storage.Add(item);
         return true;
