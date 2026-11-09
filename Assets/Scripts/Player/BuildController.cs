@@ -52,6 +52,14 @@ public class BuildController : MonoBehaviour
                 player.Inventory.Remove(ItemType.Stone);
             }
         }
+        if (Input.GetKeyDown(KeyCode.T) && hovered != null && player.InReach(HoverCell))
+        {
+            int currentPLayerBalance = player.Inventory.Count(ItemType.Coal);
+            if (currentPLayerBalance != 0 && hovered.TryInsertFuel(ItemType.Coal)) 
+            {
+                player.Inventory.Remove(ItemType.Stone);
+            }
+        }
 
     }
 
