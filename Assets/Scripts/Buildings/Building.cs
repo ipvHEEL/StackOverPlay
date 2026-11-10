@@ -61,7 +61,7 @@ public abstract class Building : MonoBehaviour
     }
 
     // Передать предмет зданию, которое стоит перед нами.
-    protected bool PushForward(ItemType item)
+    public virtual bool PushForward(ItemType item)
     {
         Building target = World.GetBuilding(OutputCell);
         return target != null && target.TryInsert(item);
