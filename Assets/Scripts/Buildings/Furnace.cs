@@ -7,7 +7,7 @@ public class Furnace : Building
 {
     public float SmeltTime = 2f;
     public int MaxStack = 20;
-    public Inventory storage = new Inventory();
+    public Inventory Fuel = new Inventory();
     public int MaxFuel = 1;
 
     ItemType inputType = ItemType.None;
@@ -28,14 +28,14 @@ public class Furnace : Building
 
     public override bool TryInsertFuel(ItemType item)
     {
-        if (storage.Total >= MaxFuel) return false;
-        storage.Add(item);
+        if (Fuel.Total >= MaxFuel) return false;
+        Fuel.Add(item);
         return true;
     }
 
     void Update()
     {
-        if (inputCount > 0 && storage.Total > 0)
+        if (inputCount > 0 && Fuel.Total > 0)
         {
             ItemType result = ItemDatabase.GetSmeltResult(inputType);
             bool hasRoom = outputCount == 0 || (outputType == result && outputCount < MaxStack);
@@ -69,7 +69,7 @@ public class Furnace : Building
 
     public override string GetInfo()
     {
-        if (storage.Total > 0) 
+        if (Fuel.Total > 0) 
         {
             
         }
@@ -77,6 +77,6 @@ public class Furnace : Building
                "\nВход: " + ItemDatabase.GetName(inputType) + " x" + inputCount +
                "\nВыход: " + ItemDatabase.GetName(outputType) + " x" + outputCount +
                "\nПрогресс: " + Mathf.RoundToInt(progress * 100) + "%" +
-               "\nТопливо: " + storage.Total;
+               "\nТопливо: " + Fuel.Total;
     }
 }
