@@ -36,9 +36,16 @@ public class ConveyorBelt : Building
         if (item == ItemType.None) return;
 
         progress = Mathf.Min(1f, progress + Speed * Time.deltaTime);
-        if (progress >= 1f && PushForward(item))
+        if (progress >= 1f && PushForward(item) )
             item = ItemType.None;
         RefreshVisual();
+    }
+
+    public override bool PushForward(ItemType item)
+    {
+        Building target = World.GetBuilding(OutputCell);
+        if (target != null && target.Def.Type == BuildingType.Chest) {return false;}
+        return target != null && target.TryInsert(item);
     }
 
     void RefreshVisual()
