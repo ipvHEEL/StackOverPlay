@@ -44,7 +44,7 @@ public class ConveyorBelt : Building
     public override bool PushForward(ItemType item)
     {
         Building target = World.GetBuilding(OutputCell);
-        if (target != null && target.Def.Type == BuildingType.Chest) {return false;}
+        if (target == null || (target.Def.Type != BuildingType.Belt  && target.Def.Type != BuildingType.Manipulator)) {return false;}
         return target != null && target.TryInsert(item);
     }
 
