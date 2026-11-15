@@ -43,7 +43,7 @@ public class HUD : MonoBehaviour
         if (Player == null || Builder == null) return;
         InitStyles();
 
-        DrawInventory();
+        //DrawInventory();
         DrawHotbar();
         DrawHoverInfo();
         DrawMiningBar();
