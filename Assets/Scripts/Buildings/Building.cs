@@ -75,6 +75,33 @@ public static class BuildingVisuals
     {
         var list = new List<SpriteRenderer>();
 
+        var prefab = Resources.Load<GameObject>("Prefabs/Manipulator"); //
+        if (def.Type == BuildingType.Manipulator)
+        { 
+            if (prefab != null)
+            {
+                var visual = UnityEngine.Object.Instantiate(prefab, parent, false);
+                visual.name = "Visual";
+                visual.transform.localPosition = Vector3.zero;
+                visual.transform.localRotation = Quaternion.identity;
+
+                var renderers = visual.GetComponentsInChildren<SpriteRenderer>(true);
+
+                // Сохраняем порядок перекрытия деталей.
+                int minOrder = int.MaxValue;
+                foreach (var renderer in renderers)
+                    minOrder = Mathf.Min(minOrder, renderer.sortingOrder);
+
+                foreach (var renderer in renderers)
+                {
+                    renderer.sortingOrder = order + renderer.sortingOrder - minOrder;
+                    list.Add(renderer);
+                }
+
+                return list;
+            }//
+        }
+
         var body = new GameObject("Body").AddComponent<SpriteRenderer>();
         body.transform.SetParent(parent, false);
         body.transform.localScale = Vector3.one * def.VisualScale;

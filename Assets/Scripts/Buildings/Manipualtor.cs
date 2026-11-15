@@ -5,17 +5,21 @@ using UnityEngine;
 // и передаёт зданию впереди. Принимает предметы с любой стороны.
 public class Manipualtor : Building
 {
-    public float Speed = 1.5f; // клеток в секунду
+    public float Speed = 2.5f; // клеток в секунду
+
+    public bool returning;
 
     ItemType item = ItemType.None;
     float progress; // 0 = задний край, 1 = передний край
     SpriteRenderer itemRenderer;
-
+    ManipulatorView view;
     readonly Inventory storage = new Inventory();
 
     protected override void OnBuilt()
     {
+        view = GetComponentInChildren<ManipulatorView>();
         itemRenderer = new GameObject("Item").AddComponent<SpriteRenderer>();
+
         itemRenderer.transform.SetParent(transform, false);
         itemRenderer.transform.localScale = Vector3.one * 0.45f;
         itemRenderer.sortingOrder = SortingOrders.Item;
@@ -24,6 +28,7 @@ public class Manipualtor : Building
 
     public override bool TryInsert(ItemType newItem)
     {
+        if (returning) return false;
         if (item != ItemType.None) return false;
         item = newItem;
         progress = 0f;
@@ -31,13 +36,39 @@ public class Manipualtor : Building
         return true;
     }
 
+    public void ReturnToStart()
+    {
+        if (returning)
+        { 
+            progress = Mathf.MoveTowards(progress, 0f, Speed * Time.deltaTime);
+        }
+
+        if (view != null) {
+            view.SetProgress(progress);
+        }
+        if (progress == 0f) {
+            returning = false;
+        }
+        return;
+    }
+
     void Update()
     {
+        if (returning)
+        {
+            ReturnToStart();
+            return;
+        }
+        if (view != null)
+            view.SetProgress(progress);
         if (item == ItemType.None) return;
 
         progress = Mathf.Min(1f, progress + Speed * Time.deltaTime);
         if (progress >= 1f && PushForward(item))
+        {
             item = ItemType.None;
+            returning = true;
+        }
         RefreshVisual();
     }
 
