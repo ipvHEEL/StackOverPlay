@@ -20,7 +20,7 @@ public class Furnace : Building
     {
         if (ItemDatabase.GetSmeltResult(item) == ItemType.None) return false;
         if (inputCount > 0 && inputType != item) return false;
-        if (inputCount >= MaxStack) return false;
+     if (inputCount >= MaxStack) return false;
         inputType = item;
         inputCount++;
         return true;

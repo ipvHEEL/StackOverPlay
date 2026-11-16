@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 
-public enum BuildingType { Belt, Drill, Furnace, Chest, Manipulator }
+public enum BuildingType { Belt, Drill, Furnace, Chest, Manipulator,  Workbench}
 
 // Описание типа здания: имя, цвет, стоимость, какой скрипт вешать.
 public class BuildingDef
@@ -76,6 +76,17 @@ public static class BuildingDatabase
             Hotkey = KeyCode.Alpha5,
             Cost = new[] { new ItemStack(ItemType.IronPlate, 1) },
             Component = typeof(Manipualtor), // change to manipulator
+        },
+        new BuildingDef
+        { 
+            Type = BuildingType.Workbench,
+            Name = "Верстак",
+            Color = new Color(0.55f, 0.55f, 0.55f),
+            VisualScale = 0.8f,
+            Rotatable = true,
+            Hotkey = KeyCode.Alpha6,
+            Cost = new[] { new ItemStack(ItemType.CopperPlate, 1)},
+            Component = typeof(Workbench),
         },
     };
 
