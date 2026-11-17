@@ -56,6 +56,11 @@ public class Workbench : Building
             outputCount--;
     }
 
+    public string getCraft(ItemType item)
+    {
+        return "Дерево";
+    }
+
     public override List<ItemStack> TakeContents()
     {
         var result = new List<ItemStack>();
