@@ -8,6 +8,19 @@ public class Workbench : Building
 {
     public float CraftTime = 2f;
 
+    readonly Inventory stotage = new Inventory();
+
+    public int MaxSlots = 9;
+
+    public override bool TryInsert(ItemType item)
+    {
+        if (stotage.Total >= MaxSlots)
+        {
+            return false;
+        }
+        stotage.Add(item);
+        return true;
+    }
 
 
     public static ItemType GetItemCraft(ItemType t) // nothing
