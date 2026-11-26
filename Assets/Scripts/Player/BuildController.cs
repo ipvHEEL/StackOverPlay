@@ -10,11 +10,19 @@ public class BuildController : MonoBehaviour
     public Direction Facing { get; private set; }
     public Vector2Int HoverCell { get; private set; }
     public string LastMessage { get; private set; }
+    private GameObject workbenchPanel;
+
+
 
     PlayerController player;
     Camera cam;
     GameObject ghost;
     List<SpriteRenderer> ghostRenderers = new List<SpriteRenderer>();
+
+    public void SetWorkbenchPanel(GameObject panel)
+    {
+        workbenchPanel = panel;
+    }
 
     void Start()
     {
@@ -59,6 +67,14 @@ public class BuildController : MonoBehaviour
             {
                 player.Inventory.Remove(ItemType.Stone);
             }
+        }
+        if (Input.GetKeyDown(KeyCode.X) && hovered is Workbench && player.InReach(HoverCell) && workbenchPanel != null)
+        {
+            workbenchPanel.SetActive(true);
+        }
+        else
+        {
+            workbenchPanel.SetActive(false);
         }
 
     }

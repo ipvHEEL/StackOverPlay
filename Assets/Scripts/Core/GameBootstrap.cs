@@ -1,33 +1,42 @@
-using UnityEngine;
+    using UnityEngine;
 
-// Точка входа. Собирает всю игру из кода при нажатии Play в любой сцене —
-// ничего руками на сцену добавлять не нужно. Хочешь собирать сцену сам —
-// поставь AutoStart = false.
-public static class GameBootstrap
-{
-    public static bool AutoStart = true;
-
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    static void Boot()
+    // Точка входа. Собирает всю игру из кода при нажатии Play в любой сцене —
+    // ничего руками на сцену добавлять не нужно. Хочешь собирать сцену сам —
+    // поставь AutoStart = false.
+    public static class GameBootstrap
     {
-        if (!AutoStart || WorldGrid.Instance != null) return;
+        public static bool AutoStart = true;
 
-        // Мир
-        var world = new GameObject("World").AddComponent<WorldGrid>();
-        world.Generate();
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        static void Boot()
+        {
+            if (!AutoStart || WorldGrid.Instance != null) return;
 
-        // Игрок
-        var playerGo = new GameObject("Player");
-        playerGo.transform.position = world.SpawnPoint;
-        var body = new GameObject("Body").AddComponent<SpriteRenderer>();
-        body.transform.SetParent(playerGo.transform, false);
-        body.transform.localScale = Vector3.one * 2.0f;
-        var playerColor = new Color(1f, 0.55f, 0.1f);
-        body.sprite = Resources.LoadAll<Sprite>("Sprites/MinifolksVillagers/Outline/MiniVillagerMan")[0];
-        body.sortingOrder = SortingOrders.Player;
+            // Мир
+            var world = new GameObject("World").AddComponent<WorldGrid>();
+            world.Generate();
 
-        var player = playerGo.AddComponent<PlayerController>();
-        var builder = playerGo.AddComponent<BuildController>();
+            // Игрок
+            var playerGo = new GameObject("Player");
+            playerGo.transform.position = world.SpawnPoint;
+            var body = new GameObject("Body").AddComponent<SpriteRenderer>();
+            body.transform.SetParent(playerGo.transform, false);
+            body.transform.localScale = Vector3.one * 2.0f;
+            var playerColor = new Color(1f, 0.55f, 0.1f);
+            body.sprite = Resources.LoadAll<Sprite>("Sprites/MinifolksVillagers/Outline/MiniVillagerMan")[0];
+            body.sortingOrder = SortingOrders.Player;
+
+            var player = playerGo.AddComponent<PlayerController>();
+            var builder = playerGo.AddComponent<BuildController>();
+
+            var canvas = GameObject.Find("Canvas");
+            var panel = canvas != null ? canvas.transform.Find("WorkbenchUI") : null;
+
+        if (panel != null)
+        {
+        panel.gameObject.SetActive(false);
+        builder.SetWorkbenchPanel(panel.gameObject);
+        }
 
         // Стартовые ресурсы, чтобы сразу можно было что-то построить.
         player.Inventory.Add(ItemType.IronPlate, 50);
