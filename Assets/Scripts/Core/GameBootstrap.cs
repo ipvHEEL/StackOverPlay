@@ -30,7 +30,7 @@
             var builder = playerGo.AddComponent<BuildController>();
 
             var canvas = GameObject.Find("Canvas");
-            var panel = canvas != null ? canvas.transform.Find("WorkbenchUI") : null;
+            var panel = canvas != null ? canvas.transform.Find("WorkbenchPanel") : null;
 
         if (panel != null)
         {
