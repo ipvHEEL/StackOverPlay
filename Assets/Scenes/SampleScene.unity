@@ -792,7 +792,7 @@ GameObject:
   - component: {fileID: 1267843076}
   - component: {fileID: 1267843075}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: WorkbenchPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

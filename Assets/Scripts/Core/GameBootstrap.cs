@@ -41,7 +41,7 @@
         // Стартовые ресурсы, чтобы сразу можно было что-то построить.
         player.Inventory.Add(ItemType.IronPlate, 50);
         player.Inventory.Add(ItemType.Stone, 30);
-
+        player.Inventory.Add(ItemType.CopperPlate, 1);
         // Камера
         Camera cam = Camera.main;
         if (cam == null)

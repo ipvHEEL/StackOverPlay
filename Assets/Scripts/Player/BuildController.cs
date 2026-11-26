@@ -68,14 +68,15 @@ public class BuildController : MonoBehaviour
                 player.Inventory.Remove(ItemType.Stone);
             }
         }
-        if (Input.GetKeyDown(KeyCode.X) && hovered is Workbench && player.InReach(HoverCell) && workbenchPanel != null)
+        if (Input.GetKeyDown(KeyCode.X) &&
+    hovered is Workbench &&
+    player.InReach(HoverCell) &&
+    workbenchPanel != null)
         {
             workbenchPanel.SetActive(true);
         }
-        else
-        {
-            workbenchPanel.SetActive(false);
-        }
+
+
 
     }
 
